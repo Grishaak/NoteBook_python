@@ -25,14 +25,22 @@ def start():
                 index = int(scaner(input_index))
                 new_title = scaner(input_text)
                 new_text = scaner(input_text)
-                presenter.redact_note(index, new_title, new_text)
+                flag = presenter.redact_note(index, new_title, new_text)
+                if flag is not None:
+                    print_text(flag)
             case "5":
-                presenter.save_notes()
+                flag = presenter.save_notes()
+                if not flag:
+                    print_text("Невозможно сохранить данные.")
             case "6":
-                presenter.load_notes()
+                flag = presenter.load_notes()
+                if not flag:
+                    print_text("Невозможно загрузить файл")
             case "7":
                 index = int(scaner(input_index))
-                presenter.delete_note(index)
+                flag = presenter.delete_note(index)
+                if flag is not None:
+                    print_text(flag)
             case "8":
                 break
             case _:
