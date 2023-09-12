@@ -6,8 +6,8 @@ class Presenter:
     def __init__(self):
         self.notes = NoteBook()
 
-    def create_note(self, title, text):
-        self.notes.create_note(title, text)
+    def create_note(self, title, text, date):
+        self.notes.create_note(title, text, date)
 
     def show_note(self, index):
         try:
@@ -37,6 +37,7 @@ class Presenter:
     def load_notes(self):
         try:
             self.notes.load_saves()
+            return True
         except OSError:
             return False
 
@@ -45,3 +46,6 @@ class Presenter:
             self.notes.delete_note(index)
         except InvalidIndexError as e:
             return e
+
+    def sort_by_date(self):
+        self.notes.sort_by_date()

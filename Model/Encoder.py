@@ -10,7 +10,7 @@ class Encoder(JSONEncoder):
 
     def from_json(self, json_object):
         if 'title' in json_object:
-            x = Note(json_object['title'], json_object["text"])
+            x = Note(json_object['title'], json_object["text"], json_object["date"])
             return x
 
     def encode_to_json(self, notes: dict):

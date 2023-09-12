@@ -3,8 +3,8 @@ from datetime import datetime
 
 class Note:
 
-    def __init__(self, title, text):
-        self.date = str(datetime.now().date())
+    def __init__(self, title, text, date):
+        self.date = str(date)
         self.title = title
         self.text = text
 

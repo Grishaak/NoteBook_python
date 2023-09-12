@@ -1,3 +1,5 @@
+import datetime
+
 from Presenter.Presenter import Presenter
 from Texts import *
 
@@ -11,7 +13,12 @@ def start():
             case "1":
                 title = scaner("Введите заглавие: ")
                 text = scaner("Введите текст заметки: ")
-                presenter.create_note(title, text)
+                year = int(scaner("Введите год: "))
+                month = int(scaner("Введите месяц: "))
+                day = int(scaner("Введите день: "))
+                date = datetime.date(year, month, day)
+                print(type(date))
+                presenter.create_note(title, text, date)
             case "2":
                 index = int(scaner(input_index))
                 notes = presenter.show_note(index)
@@ -35,13 +42,17 @@ def start():
             case "6":
                 flag = presenter.load_notes()
                 if not flag:
-                    print_text("Невозможно загрузить файл")
+                    print_text("Невозможно загрузить файл.")
+                else:
+                    print_text("Файл загружен.")
             case "7":
                 index = int(scaner(input_index))
                 flag = presenter.delete_note(index)
                 if flag is not None:
                     print_text(flag)
             case "8":
+                presenter.sort_by_date()
+            case "9":
                 break
             case _:
                 print_text(error_input)

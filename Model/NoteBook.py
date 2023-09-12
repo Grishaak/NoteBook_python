@@ -16,9 +16,9 @@ class NoteBook:
             string += str(note) + "\n"
         return string
 
-    def create_note(self, title: str, text):
+    def create_note(self, title: str, text, date):
         title, text = self.__test_title_text(title, text)
-        note = Note(title, text)
+        note = Note(title, text, date)
         self.index += 1
         record = self.notes
         record[self.index] = note
@@ -74,3 +74,10 @@ class NoteBook:
         if text == "":
             text = "< Без текста. >"
         return title, text
+
+    def sort_by_date(self):
+        # import operator
+        new_sorted_dict = {}
+        for i, value in sorted(self.notes.items(), key=lambda note: note[1].date, reverse=False):
+            new_sorted_dict[i] = value
+        self.notes = new_sorted_dict
